@@ -7,18 +7,12 @@ SOURCES = [
     # U.S. GENERAL NEWS
     # -------------------------
     {
+        # Associated Press dropped RSS - use Google News source filter instead
         "name": "Associated Press",
         "lean": "Center",
         "credibility": "High",
         "feeds": [
-            "https://feeds.apnews.com/rss/apf-topnews",
-            "https://feeds.apnews.com/rss/apf-politics",
-            "https://feeds.apnews.com/rss/apf-usnews",
-            "https://feeds.apnews.com/rss/apf-WorldNews",
-            "https://feeds.apnews.com/rss/apf-business",
-            "https://feeds.apnews.com/rss/apf-technology",
-            "https://feeds.apnews.com/rss/apf-Health",
-            "https://feeds.apnews.com/rss/apf-science",
+            "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
         ]
     },
     {
@@ -27,7 +21,7 @@ SOURCES = [
         "lean": "Center",
         "credibility": "High",
         "feeds": [
-            "https://news.google.com/rss/search?q=when:24h+allinurl:reuters.com&ceid=US:en&hl=en-US&gl=US",
+            "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
         ],
         "note": "Google News proxy — resolve redirect URLs before scraping"
     },
@@ -130,7 +124,7 @@ SOURCES = [
         "lean": "Left",
         "credibility": "High",
         "feeds": [
-            "https://www.theatlantic.com/feed/all/",
+            "https://news.google.com/rss/search?q=site%3Atheatlantic.com&hl=en-US&gl=US&ceid=US%3Aen",
         ]
     },
 
@@ -267,7 +261,7 @@ SOURCES = [
         "lean": "Center-Left",
         "credibility": "High",
         "feeds": [
-            "https://rss.sciam.com/ScientificAmerican-Global",
+            "https://www.scientificamerican.com/platform/syndication/rss/",
         ]
     },
     {
