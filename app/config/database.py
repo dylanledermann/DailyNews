@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS articles (
     body_truncated INTEGER DEFAULT 0,
     published TEXT,
     source_name TEXT,
-    source_bias TEXT,
+    source_lean TEXT,
     source_credebility TEXT,
     category TEXT,
     political_lean TEXT,

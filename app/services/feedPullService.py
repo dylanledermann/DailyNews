@@ -66,28 +66,29 @@ class FeedPullService:
 
         return {
             # Core identity
-            "id":                 self.make_article_id(url),
-            "title":              entry.get("title", "").strip(),
-            "url":                url,
-            "summary":            entry.get("summary", "").strip(),
-            "published":          published,
+            "id": self.make_article_id(url),
+            "title": entry.get("title", "").strip(),
+            "url": url,
+            "summary": entry.get("summary", "").strip(),
+            "published": published,
             # Source metadata (pre-tagged, not AI-inferred)
-            "source_name":        source["name"],
-            "source_lean":        source.get("lean", "Unknown"),
+            "source_name": source["name"],
+            "source_lean": source.get("lean", "Unknown"),
             "source_credibility": source.get("credibility", "Unknown"),
             # Body - filled by scraper
-            "body":               None,
-            "body_truncated":     0,
+            "body": None,
+            "body_truncated": 0,
             # Classification - filled by classifier
-            "category":           None,
-            "political_lean":     None,
-            "bias_score":         None,
-            "factuality_score":   None,
-            "tone":               None,
-            "bias_reasoning":     None,
-            "summary_ai":         None,
+            "category": None,
+            "political_lean": None,
+            "bias_score": None,
+            "factuality_score": None,
+            "tone": None,
+            "bias_reasoning": None,
+            "emotional_language": None,
+            "summary_ai": None,
             "classification_raw": None,
-            "classified_at":      None,
+            "classified_at":None,
         }
     
     def fetch_feed(self, feed_url: str, source: dict, is_google_news: bool = False) -> list[dict]:

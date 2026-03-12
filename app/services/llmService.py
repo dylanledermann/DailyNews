@@ -1,16 +1,17 @@
 import json
 
 from openai import OpenAI
+import requests
 
 CLASSIFICATION_PROMPT = """
 You are a neutral media analysis tool. Your job is to analyze news articles objectively.
 You must return ONLY a valid JSON object. Do not include any preamble, explanation, or markdown formatting.
 
 ## ARTICLE METADATA
-Source:       {source_name}
-Known Lean:   {source_lean}
-Title:        {title}
-Summary:      {summary}
+Source: {source_name}
+Known Lean: {source_lean}
+Title: {title}
+Summary: {summary}
 {body_note}
 
 ## ARTICLE BODY
@@ -27,7 +28,7 @@ Analyze the article above and return this exact JSON structure with no deviation
     "tone": "<tone>",
     "bias_reasoning": "<bias_reasoning>",
     "emotional_language": <emotional_language>,
-    "summary": "<summary>"
+    "summary_ai": "<summary>"
 }}
 
 ## FIELD DEFINITIONS
@@ -84,7 +85,7 @@ Analyze the article above and return this exact JSON structure with no deviation
     true  = contains loaded terms, hyperbole, or fear/anger-inducing framing
     false = language is measured, neutral, and informational
 
-"summary"
+"summary_ai"
     A neutral 2-3 sentence summary of what the article reports.
     Write as if summarizing for someone who has not read it.
     Do not editorialize. Do not include your own opinion.
@@ -108,7 +109,7 @@ Analyze the article above and return this exact JSON structure with no deviation
 class LLMService:
     def __init__(self):
         self.client = OpenAI(
-            base_url="http://localhost:11424/v1",
+            base_url="http://localhost:11434/v1",
             api_key="ollama"
         )
 
@@ -136,7 +137,7 @@ class LLMService:
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=500,
                 temperature=0.1,
-                format="json"
+                response_format={ "type": "json_object" }
             )
             raw = response.choices[0].message.content.strip()
             return json.loads(raw)

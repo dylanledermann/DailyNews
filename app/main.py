@@ -23,7 +23,7 @@ def main():
     articleRepo = ArticleRepo()
 
     # Fetch feeds
-    articles = feedPuller.fetch_all_sources(SOURCES)
+    articles = feedPuller.fetch_all_sources([SOURCES])
 
     for article in articles:
 
@@ -33,7 +33,7 @@ def main():
         
         # Skip impossible scraping
         skip_scrape = (
-            article["body_truncated"] or is_blocklisted()
+            article["body_truncated"] or is_blocklisted(article["url"])
         )
         if skip_scrape:
             article["body_truncated"] = 1

@@ -13,6 +13,7 @@ class ArticleRepo:
         return row is not None
     
     def upsert_article(self, article: dict) -> str:
+        print(article)
         row = self.db.execute("""
             INSERT INTO articles (
                 id, title, url, body, body_truncated, published, 
@@ -27,8 +28,8 @@ class ArticleRepo:
                 :factuality_score, :tone, :bias_reasoning, :emotional_language,
                 :summary, :classification_raw, :classified_at
             )
-            RETURNING id
-            ON CONFLICT(id) DO NOTHING;
+            ON CONFLICT(id) DO NOTHING
+            RETURNING id;
         """, article).fetchone()
         self.db.commit()
         return row["id"]

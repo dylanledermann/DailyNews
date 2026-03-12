@@ -14,7 +14,7 @@ def load_settings():
     SETTINGS = {
         "LLM_API_KEY":os.getenv("LLM_API_KEY"),
         "HTML_GENERATION_PATH":os.getenv("HTML_GENERATION_PATH") or "./app/docs",
-        "DB_PATH":os.getenv("DB_PATH") or "./app/db",
+        "DB_PATH":os.getenv("DB_PATH") or "./app/db/news_database.db",
         "NEWS_CLEANUP":int(os.getenv("NEWS_CLEANUP") or '2'),
         "SOURCES_PATH":os.getenv("SOURCES_PATH") or "./app/sources/sources.json",
         "USER_AGENT":os.getenv("USER_AGENT"),
