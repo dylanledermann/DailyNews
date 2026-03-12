@@ -12,6 +12,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
+from app.sources.sources import SOURCES
+
 sources_path = "./app/sources/sources.json"
 
 load_dotenv()
@@ -26,48 +28,46 @@ class DummyClass:
         self.text = text
 
 def scrape_allsides_ratings() -> dict:
-    jsonSources = {}
-    with open(sources_path, "r") as sources:
-        jsonSources = json.load(sources)
-        driver = gen_driver()
-        missingVals = 0
-        for s in jsonSources:
-            missing = False
+    jsonSources = SOURCES
+    driver = gen_driver()
+    missingVals = 0
+    for s in jsonSources:
+        missing = False
+        random_sleep()
+        url = f"https://www.allsides.com/news-source/{format_news_name(s["name"])}-media-bias"
+        print(f"Starting scrape for {s["name"]} at {url}")
+        driver.get(url)
+        try:
             random_sleep()
-            url = f"https://www.allsides.com/news-source/{format_news_name(s["name"])}-media-bias"
-            print(f"Starting scrape for {s["name"]} at {url}")
-            driver.get(url)
+            # Try to get rating if not keep as previous rating. Default to "0.00"
+            rating = DummyClass(s.get("rating", "0.00"))
             try:
-                random_sleep()
-                # Try to get rating if not keep as previous rating. Default to "0.00"
-                rating = DummyClass(s.get("rating", "0.00"))
-                try:
-                    rating = driver.find_element(By.CLASS_NAME, "numerical-bias-rating")
-                except NoSuchElementException as e:
-                    missing = True
-                    print(f"No rating found for {s["name"]}")
+                rating = driver.find_element(By.CLASS_NAME, "numerical-bias-rating")
+            except NoSuchElementException as e:
+                missing = True
+                print(f"No rating found for {s["name"]}")
 
-                # Try to get lean if not keep as previous lean. Default to "Center"
+            # Try to get lean if not keep as previous lean. Default to "Center"
+            lean = "Center"
+            if float(rating.text) < -3.00:
+                lean = "Left"
+            elif float(rating.text) < -1.00:
+                lean = "Center-Left"
+            elif float(rating.text) < 1.00:
                 lean = "Center"
-                if float(rating.text) < -3.00:
-                    lean = "Left"
-                elif float(rating.text) < -1.00:
-                    lean = "Center-Left"
-                elif float(rating.text) < 1.00:
-                    lean = "Center"
-                elif float(rating.text) < 3.00:
-                    lean = "Center-Right"
-                else:
-                    lean = "Right"
+            elif float(rating.text) < 3.00:
+                lean = "Center-Right"
+            else:
+                lean = "Right"
 
-                print(f"Scrape for {s["name"]} done. Rating: {s.get("rating", "0.00")} to {rating.text}. Lean: {s.get("lean", "Center")} to {lean}")
-                s["rating"] = rating.text
-                s["lean"] = lean
-                missingVals += int(missing)
-            except Exception as e:
-                print(e, traceback.format_exc())
-        driver.close()
-        print(f"Finished scraping. Missing values: {missingVals}")
+            print(f"Scrape for {s["name"]} done. Rating: {s.get("rating", "0.00")} to {rating.text}. Lean: {s.get("lean", "Center")} to {lean}")
+            s["rating"] = rating.text
+            s["lean"] = lean
+            missingVals += int(missing)
+        except Exception as e:
+            print(e, traceback.format_exc())
+    driver.close()
+    print(f"Finished scraping. Missing values: {missingVals}")
     with open(sources_path, "w") as sources:
         json.dump(jsonSources, sources, indent=4)
 
@@ -94,7 +94,6 @@ def gen_driver():
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--headless=new")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get('https://www.google.com/')
     load_cookies(driver)
