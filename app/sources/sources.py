@@ -11,6 +11,7 @@ SOURCES = [
         "name": "Associated Press",
         "lean": "Center",
         "credibility": "High",
+        "feed_type": "google_news",
         "feeds": [
             "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
         ]
@@ -20,6 +21,7 @@ SOURCES = [
         "name": "Reuters",
         "lean": "Center",
         "credibility": "High",
+        "feed_type": "google_news",
         "feeds": [
             "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
         ],
