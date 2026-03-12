@@ -1,6 +1,6 @@
 import sqlite3
 
-from app.config.env import SETTINGS
+from app.config.settings import SETTINGS
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS articles (

@@ -1,4 +1,3 @@
-from functools import lru_cache
 from dotenv import load_dotenv
 import os
 
@@ -11,10 +10,16 @@ load_dotenv(".env")
 SETTINGS = None
 
 def load_settings():
+    global SETTINGS
     SETTINGS = {
         "LLM_API_KEY":os.getenv("LLM_API_KEY"),
         "HTML_GENERATION_PATH":os.getenv("HTML_GENERATION_PATH") or "./app/docs",
         "DB_PATH":os.getenv("DB_PATH") or "./app/db",
-        "NEWS_CLEANUP":int(os.getenv("NEWS_CLEANUP")) or 2,
+        "NEWS_CLEANUP":int(os.getenv("NEWS_CLEANUP") or '2'),
+        "SOURCES_PATH":os.getenv("SOURCES_PATH") or "./app/sources/sources.json",
+        "USER_AGENT":os.getenv("USER_AGENT"),
+        "DATA_DIRECTORY":os.getenv("DATA_DIRECTORY"),
     }
     assert(SETTINGS["LLM_API_KEY"] is not None)
+
+load_settings()

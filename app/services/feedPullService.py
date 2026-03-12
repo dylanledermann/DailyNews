@@ -41,9 +41,6 @@ PAYWALLED_DOMAINS = {
 PAYWALLED_LENGTH = 200
 
 class NewPullService:
-    # def __init__(self,):
-        # self.articleRepo = ArticleRepo()
-
     # Url Resolution (Google News redirect -> real URL)
     def resolve_google_url(self, google_url: str) -> str | None:
         """
@@ -104,10 +101,10 @@ class NewPullService:
             "source_name":        source["name"],
             "source_lean":        source.get("lean", "Unknown"),
             "source_credibility": source.get("credibility", "Unknown"),
-            # Body — filled by scraper
+            # Body - filled by scraper
             "body":               None,
             "body_truncated":     0,
-            # Classification — filled by classifier
+            # Classification - filled by classifier
             "category":           None,
             "political_lean":     None,
             "bias_score":         None,
