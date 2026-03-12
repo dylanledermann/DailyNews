@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS articles (
     title TEXT NOT NULL,
     url TEXT NOT NULL,
     body TEXT NOT NULL,
-    body_truncated REAL,
+    body_truncated INTEGER DEFAULT 0,
     published TEXT,
     source_name TEXT,
     source_bias TEXT,
@@ -21,13 +21,11 @@ CREATE TABLE IF NOT EXISTS articles (
     bias_reasoning TEXT,
     summary TEXT,
     classification_raw TEXT,
-    classified_at TEXT,
-    updated_at TEXT
+    classified_at TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_published ON articles(published);
 CREATE INDEX IF NOT EXISTS idx_source ON articles(source_name);
 CREATE INDEX IF NOT EXISTS idx_category ON articles(category);
-CREATE INDEX IF NOT EXISTS idx_updated_at ON articles(updated_at);
 """
 
 def get_connection() -> sqlite3.Connection:
