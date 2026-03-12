@@ -4,10 +4,9 @@ import hashlib
 import requests
 import time
 from datetime import datetime
-from urllib.parse import urlparse
 from googlenewsdecoder import gnewsdecoder
 
-from app.repo.articleRepo import ArticleRepo
+from app.helpers.scrapeHelpers import check_truncation
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -25,17 +24,6 @@ PAYWALL_SIGNALS = {
     "read the full article",
     "unlock this story",
     "premium content",
-}
-
-PAYWALLED_DOMAINS = {
-    "wsj.com",
-    "ft.com",
-    "bloomberg.com",
-    "nytimes.com",
-    "theatlantic.com",
-    "technologyreview.com",
-    "theverge.com",
-    "arstechnica.com",
 }
 
 PAYWALLED_LENGTH = 200
@@ -56,21 +44,7 @@ class NewPullService:
         except requests.RequestException as e:
             print(f"URL resolution failed: {google_url - {e}}")
             return None
-        
-    # Truncation Detection
-    def detect_truncation(self, url: str, body: str) -> bool:
-        """
-        Detects whether article body is paywalled or truncated.
-        Returns True if truncated, False if fully body available.
-        """
-        if not body:
-            return True
-        domain = urlparse(url).netloc.replace("www", "")
-        body_lower = body.lower()
-        if (any(d in domain for d in PAYWALLED_DOMAINS) or any(signal in body_lower for signal in PAYWALL_SIGNALS)) and len(body) <= PAYWALLED_LENGTH:
-            return True
-        return False
-    
+            
     def make_article_id(self, url: str) -> str:
         """Stable unique ID derived from canonical article URL."""
         return hashlib.md5(url.encode()).hexdigest()
@@ -184,7 +158,7 @@ class NewPullService:
 
                     # RSS summary can give an early truncation signal
                     # flag summary for paywall language early
-                    if self.detect_truncation(article["url"], article["summary"]):
+                    if check_truncation(article["url"], article["summary"]):
                         article["body_truncated"] = 1
 
                     all_articles.append(article)
