@@ -1,5 +1,4 @@
 from urllib.parse import urlparse
-
 from bs4 import BeautifulSoup
 
 # Domains known to block scrapers even with spoofed headers

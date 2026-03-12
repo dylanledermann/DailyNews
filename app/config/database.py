@@ -14,11 +14,12 @@ CREATE TABLE IF NOT EXISTS articles (
     source_bias TEXT,
     source_credebility TEXT,
     category TEXT,
-    political_bias TEXT,
+    political_lean TEXT,
     bias_score REAL,
     factuality_score REAL,
     tone TEXT,
     bias_reasoning TEXT,
+    emotional_language INTEGER DEFAULT 0,
     summary TEXT,
     classification_raw TEXT,
     classified_at TEXT

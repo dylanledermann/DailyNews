@@ -1,10 +1,11 @@
 from time import sleep
 
 from app.helpers.scrapeHelpers import check_truncation, extract_metadata, get_domain, is_blocklisted
-from app.repo.articleRepo import ArticleRepo
 import trafilatura
 import requests
 from bs4 import BeautifulSoup
+
+from app.services.llmService import LLMService
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -15,8 +16,6 @@ HEADERS = {
 }
 
 class ArticlePullService:
-    # def __init__(self,):
-    #     self.articleRepo = ArticleRepo()
 
     def extract_via_trafilatura(self, html: str) -> str | None:
         """

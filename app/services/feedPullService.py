@@ -28,7 +28,7 @@ PAYWALL_SIGNALS = {
 
 PAYWALLED_LENGTH = 200
 
-class NewPullService:
+class FeedPullService:
     # Url Resolution (Google News redirect -> real URL)
     def resolve_google_url(self, google_url: str) -> str | None:
         """
@@ -171,7 +171,7 @@ class NewPullService:
 def test_source(source: dict):
     """Quick diagnostic to verify a source's feeds are working."""
     print(f"\n=== Testing: {source["name"]} ===")
-    service = NewPullService()
+    service = FeedPullService()
     articles = service.fetch_all_sources([source])
     for a in articles[:3]:
         print(f"  Title:          {a['title'][:70]}")
