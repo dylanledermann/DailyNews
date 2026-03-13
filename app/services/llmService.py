@@ -1,7 +1,6 @@
 import json
-
+from app.config.settings import SETTINGS
 from openai import OpenAI
-import requests
 
 CLASSIFICATION_PROMPT = """
 You are a neutral media analysis tool. Your job is to analyze news articles objectively.
@@ -109,8 +108,8 @@ Analyze the article above and return this exact JSON structure with no deviation
 class LLMService:
     def __init__(self):
         self.client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama"
+            base_url=SETTINGS["LLM_BASE_URL"],
+            api_key=SETTINGS["LLM_API_KEY"]
         )
 
     def classify_article(self, article: dict) -> dict | None:
