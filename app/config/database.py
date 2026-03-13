@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS articles (
     published TEXT,
     source_name TEXT,
     source_lean TEXT,
-    source_credebility TEXT,
+    source_credibility TEXT,
     category TEXT,
     political_lean TEXT,
     bias_score REAL,

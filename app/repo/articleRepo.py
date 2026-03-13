@@ -17,7 +17,7 @@ class ArticleRepo:
         row = self.db.execute("""
             INSERT INTO articles (
                 id, title, url, body, body_truncated, published, 
-                source_name, source_lean, source_credebility, 
+                source_name, source_lean, source_credibility, 
                 category, political_lean, bias_score, 
                 factuality_score, tone, bias_reasoning, emotional_language,
                 summary, classification_raw, classified_at
