@@ -7,7 +7,6 @@ from app.services.feedPullService import FeedPullService
 from app.services.htmlGenerationService import HTMLGenerationService
 from app.services.llmService import LLMService
 from app.sources.sources import SOURCES
-from app.config.settings import SETTINGS
 
 # Main file to be ran
 # Creates db and sets up env
@@ -23,12 +22,15 @@ def main():
     articleRepo = ArticleRepo()
 
     # Fetch feeds
-    articles = feedPuller.fetch_all_sources([SOURCES])
-
+    articles = feedPuller.fetch_all_sources([SOURCES[-1]])
+    failed = 0
+    skipped = 0
+    duped = 0
     for article in articles:
 
         # Prevent duplication
         if articleRepo.article_exists(article["id"]):
+            duped += 1
             continue
         
         # Skip impossible scraping
@@ -36,16 +38,21 @@ def main():
             article["body_truncated"] or is_blocklisted(article["url"])
         )
         if skip_scrape:
+            skipped += 1
             article["body_truncated"] = 1
             print(f"Skipping scrape for article {article["title"]}")
 
         else:
             scraped = articlePuller.scrape_article(article["url"])
             article.update(scraped)
+        # If no title then failed to fetch article and it should not be included
+        if not article["title"]:
+            failed += 1
+            continue
+        article["body"] = article["body"] or ""
 
         # Classify article
         classification = llmService.classify_article(article)
-        print(classification)
         if classification:
             article.update(classification)
 
@@ -53,12 +60,12 @@ def main():
         articleRepo.upsert_article(article)
     
     removed = articleRepo.cleaup_articles()
-    print(f"{removed} articles removed")
+    print(f"{removed} Articles Removed")
 
     # Generate HTML page(s)
-    htmlGenerator.generateHtml(SETTINGS["HTML_GENERATION_PATH"])
-    
-    print("\nPipeline complete.")
+    htmlGenerator.generateHtml()
+    print(f"failed: {failed}, skipps: {skipped}, duped: {duped}")
+    print("\nPipeline Complete.")
 
 if __name__ == "__main__":
     main()

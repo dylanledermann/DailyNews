@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS articles (
     bias_reasoning TEXT,
     emotional_language INTEGER DEFAULT 0,
     summary TEXT,
+    summary_ai TEXT,
     classification_raw TEXT,
     classified_at TEXT
 );
