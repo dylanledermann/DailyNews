@@ -14,8 +14,9 @@ class HTMLGenerationService:
         formattedArticles = []
         for article in articles:
             formattedArticles.append(ARTICLE_TEMPLATE.format(
-                category=article.get("category", "world"),
+                category=(article.get("category") or "other").strip().lower(),
                 source=article.get("source_name", ""),
+                article_title=article.get("title", ""),
                 article_summary_ai="article_summary_ai" if \
                     (not article.get("summary") or article.get("body_truncated", 0)) \
                     else "",
@@ -23,8 +24,8 @@ class HTMLGenerationService:
                     (not article.get("summary") or article.get("body_truncated", 0)) \
                     else article.get("summary"),
                 bias_width=f"{(article.get("bias_score") or 0)*100:.2f}%",
-                bias_value=f"{(article.get("bias_score") or 0):.2f}%",
-                factuality_width=f"{(article.get("factuality_score") or 0)*100:.2f}",
+                bias_value=f"{(article.get("bias_score") or 0):.2f}",
+                factuality_width=f"{(article.get("factuality_score") or 0)*100:.2f}%",
                 factuality_value=f"{(article.get("factuality_score") or 0):.2f}",
                 tone_value=article.get("tone", "Neutral"),
                 emotional_value="Yes" if article.get("emotional_language", 0) else "No",
@@ -49,7 +50,7 @@ ARTICLE_TEMPLATE = """
         </div>
         <span class="article-published">September 4, 2021</span>
     </div>
-    <span class="article-title">Some Title</span>
+    <span class="article-title">{article_title}</span>
     <p class="article-summary {article_summary_ai}">
         {summary}
     </p>

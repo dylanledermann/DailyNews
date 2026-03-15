@@ -46,10 +46,9 @@ def main():
             scraped = articlePuller.scrape_article(article["url"])
             article.update(scraped)
         # If no title then failed to fetch article and it should not be included
-        if not article["title"]:
+        if not article["title"] or not article["body"]:
             failed += 1
             continue
-        article["body"] = article["body"] or ""
 
         # Classify article
         classification = llmService.classify_article(article)
