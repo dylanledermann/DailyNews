@@ -1,0 +1,354 @@
+/* ─────────────────────────────────────────────
+   NEWS AGGREGATOR — style.css
+   ───────────────────────────────────────────── */
+ 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@400;500&display=swap');
+ 
+/* ── RESET ───────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ [hidden] {
+  display: none !important;
+}
+/* ── ROOT ────────────────────────────────────── */
+:root {
+  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+ 
+  --color-bg:         #f5f4f0;
+  --color-surface:    #ffffff;
+  --color-border:     rgba(0, 0, 0, 0.08);
+  --color-border-md:  rgba(0, 0, 0, 0.14);
+ 
+  --color-text-primary:   #1a1a18;
+  --color-text-secondary: #5a5a56;
+  --color-text-tertiary:  #9a9a96;
+ 
+  --color-accent:     #378ADD;
+  --color-bias:       #D85A30;
+  --color-factual:    #1D9E75;
+ 
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+ 
+  --sidebar-width: 200px;
+  --header-height: 57px;
+}
+ 
+/* ── DARK MODE ───────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:         #1a1a18;
+    --color-surface:    #242422;
+    --color-border:     rgba(255, 255, 255, 0.08);
+    --color-border-md:  rgba(255, 255, 255, 0.14);
+ 
+    --color-text-primary:   #f0ede6;
+    --color-text-secondary: #a8a8a0;
+    --color-text-tertiary:  #686864;
+ 
+    --color-accent:     #85B7EB;
+    --color-bias:       #F0997B;
+    --color-factual:    #5DCAA5;
+  }
+}
+ 
+/* ── BASE ────────────────────────────────────── */
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+ 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ 
+/* ── HEADER ──────────────────────────────────── */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 0.5px solid var(--color-border);
+}
+ 
+#title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+ 
+/* ── LAYOUT ──────────────────────────────────── */
+#body-container {
+  display: flex;
+  min-height: calc(100vh - var(--header-height));
+}
+ 
+/* ── SIDEBAR ─────────────────────────────────── */
+#menu-sidebar {
+  position: sticky;
+  top: var(--header-height);
+  align-self: flex-start;
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  background: var(--color-surface);
+  border-right: 0.5px solid var(--color-border);
+  padding: 1.5rem 0;
+}
+ 
+#sidebar-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  padding: 0 1rem 0.75rem;
+}
+ 
+.sidebar-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.12s, color 0.12s;
+}
+ 
+.sidebar-item:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+}
+ 
+.sidebar-item.active {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  border-left-color: var(--color-accent);
+  background: var(--color-bg);
+}
+ 
+/* ── MAIN CONTENT ────────────────────────────── */
+#main {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem;
+}
+ 
+.main-heading {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-primary);
+}
+ 
+/* ── CARDS GRID ──────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+ 
+/* ── CARD ────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  color: inherit;
+}
+ 
+.card:hover {
+  border-color: var(--color-border-md);
+}
+ 
+/* Card — top row */
+.article-metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.source-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+ 
+.source-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+ 
+.card-lock {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  line-height: 1;
+}
+ 
+.article-published {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+ 
+/* Card — title */
+.article-title {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+ 
+/* Card — summary */
+.article-summary {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+ 
+.article-summary-ai {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+ 
+/* Card — divider */
+.card-divider {
+  height: 0.5px;
+  background: var(--color-border);
+}
+ 
+/* ── METRICS ─────────────────────────────────── */
+.article-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 12px;
+}
+ 
+/* Score bars */
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+}
+ 
+.score-bar-label {
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  min-width: 52px;
+}
+ 
+.score-bar-track {
+  flex: 1;
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+ 
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+ 
+.score-bar-fill-bias    { background: var(--color-bias); }
+.score-bar-fill-factual { background: var(--color-factual); }
+ 
+.score-bar-value {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  min-width: 28px;
+  text-align: right;
+}
+ 
+/* Inline metric (tone, emotional) */
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+}
+ 
+.metric-label {
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  min-width: 52px;
+}
+ 
+.metric-value {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+ 
+/* Card — reasoning */
+.metric-reasoning {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+ 
+/* ── BADGES ──────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+}
+ 
+.badge--center  { background: #F1EFE8; color: #5F5E5A; }
+.badge--left    { background: #E6F1FB; color: #185FA5; }
+.badge--right   { background: #FAECE7; color: #993C1D; }
+.badge--neutral { background: #E1F5EE; color: #0F6E56; }
+ 
+@media (prefers-color-scheme: dark) {
+  .badge--center  { background: #444441; color: #B4B2A9; }
+  .badge--left    { background: #0C447C; color: #B5D4F4; }
+  .badge--right   { background: #712B13; color: #F5C4B3; }
+  .badge--neutral { background: #085041; color: #9FE1CB; }
+}
+ 
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+ 
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .main {
+    padding: 1rem;
+  }
+}
