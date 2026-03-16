@@ -22,7 +22,7 @@ def main():
     articleRepo = ArticleRepo()
 
     # Fetch feeds
-    articles = feedPuller.fetch_all_sources([SOURCES[-1]])
+    articles = feedPuller.fetch_all_sources(SOURCES)
     failed = 0
     skipped = 0
     duped = 0
