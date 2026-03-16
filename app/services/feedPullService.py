@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 from googlenewsdecoder import gnewsdecoder
 
-from app.helpers.scrapeHelpers import check_truncation
+from app.helpers.scrapeHelpers import check_truncation, clean_text
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -63,13 +63,16 @@ class FeedPullService:
             published = entry["published"]
         else:
             published = datetime.now().isoformat()
-
+        
+        # Clean all extracted text
+        cleanedSummary = clean_text(entry.get("summary", "").strip())
+        cleanedTitle = clean_text(entry.get("title", "").strip())
         return {
             # Core identity
             "id": self.make_article_id(url),
-            "title": entry.get("title", "").strip(),
+            "title": cleanedTitle,
             "url": url,
-            "summary": entry.get("summary", "").strip(),
+            "summary": cleanedSummary,
             "published": published,
             # Source metadata (pre-tagged, not AI-inferred)
             "source_name": source["name"],

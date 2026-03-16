@@ -15,7 +15,9 @@ class HTMLGenerationService:
         for article in articles:
             formattedArticles.append(ARTICLE_TEMPLATE.format(
                 category=(article.get("category") or "other").strip().lower(),
+                article_link=(article.get("url") or ""),
                 source=article.get("source_name", ""),
+                article_date=article.get("published"),
                 article_title=article.get("title", ""),
                 article_summary_ai="article_summary_ai" if \
                     (not article.get("summary") or article.get("body_truncated", 0)) \
@@ -43,12 +45,12 @@ class HTMLGenerationService:
         print(f"HTML Generated At {self.loc}.")
 
 ARTICLE_TEMPLATE = """
-<a class="card {category}" href="">
+<a class="card {category}" href="{article_link}">
     <div class="article-metadata">
         <div class="source-row">
             <span class="source-name">{source}</span>
         </div>
-        <span class="article-published">September 4, 2021</span>
+        <span class="article-published">{article_date}</span>
     </div>
     <span class="article-title">{article_title}</span>
     <p class="article-summary {article_summary_ai}">

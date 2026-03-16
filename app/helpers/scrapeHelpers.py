@@ -73,3 +73,6 @@ def extract_metadata(soup: BeautifulSoup):
         "section":      get_meta(prop="article:section"),
         "keywords":     get_meta(name="keywords"),
     }
+
+def clean_text(text: str):
+    return BeautifulSoup(text, "html.parser").get_text(separator="\n", strip=True)
