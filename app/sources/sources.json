@@ -1,28 +1,7 @@
 [
     {
-        "name": "Associated Press",
-        "lean": "Left",
-        "credibility": "High",
-        "feed_type": "google_news",
-        "feeds": [
-            "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
-        ],
-        "rating": "-3.02"
-    },
-    {
-        "name": "Reuters",
-        "lean": "Center",
-        "credibility": "High",
-        "feed_type": "google_news",
-        "feeds": [
-            "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
-        ],
-        "note": "Google News proxy - resolve redirect URLs before scraping",
-        "rating": "-0.85"
-    },
-    {
         "name": "NPR",
-        "lean": "Center-Left",
+        "lean": "Center",
         "credibility": "High",
         "feeds": [
             "https://feeds.npr.org/1001/rss.xml",
@@ -31,7 +10,7 @@
             "https://feeds.npr.org/1128/rss.xml",
             "https://feeds.npr.org/1007/rss.xml"
         ],
-        "rating": "-1.88"
+        "rating": "0.00"
     },
     {
         "name": "The Hill",
@@ -41,30 +20,6 @@
             "https://thehill.com/rss/syndicator/19110"
         ],
         "rating": "-0.80"
-    },
-    {
-        "name": "Axios",
-        "lean": "Center-Left",
-        "credibility": "High",
-        "feeds": [
-            "https://api.axios.com/feed/"
-        ],
-        "rating": "-1.70"
-    },
-    {
-        "name": "New York Times News",
-        "lean": "Center-Left",
-        "credibility": "High",
-        "feeds": [
-            "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
-            "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
-        ],
-        "rating": "-2.20"
     },
     {
         "name": "Washington Post",
@@ -79,33 +34,6 @@
             "https://feeds.washingtonpost.com/rss/lifestyle"
         ],
         "rating": "-1.63"
-    },
-    {
-        "name": "Wall Street Journal",
-        "lean": "Center",
-        "credibility": "High",
-        "feeds": [
-            "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
-            "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml",
-            "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-            "https://feeds.a.dj.com/rss/RSSWSJD.xml",
-            "https://feeds.a.dj.com/rss/RSSOpinion.xml"
-        ],
-        "rating": "0.33"
-    },
-    {
-        "name": "Fox News",
-        "lean": "Right",
-        "credibility": "Mixed",
-        "feeds": [
-            "https://moxie.foxnews.com/google-publisher/latest.xml",
-            "https://moxie.foxnews.com/google-publisher/politics.xml",
-            "https://moxie.foxnews.com/google-publisher/us.xml",
-            "https://moxie.foxnews.com/google-publisher/world.xml",
-            "https://moxie.foxnews.com/google-publisher/health.xml",
-            "https://moxie.foxnews.com/google-publisher/tech.xml"
-        ],
-        "rating": "3.27"
     },
     {
         "name": "The Guardian",
@@ -147,15 +75,6 @@
         "rating": "-0.80"
     },
     {
-        "name": "Al Jazeera",
-        "lean": "Center-Left",
-        "credibility": "High",
-        "feeds": [
-            "https://www.aljazeera.com/xml/rss/all.xml"
-        ],
-        "rating": "-2.30"
-    },
-    {
         "name": "Deutsche Welle",
         "lean": "Center",
         "credibility": "High",
@@ -174,18 +93,6 @@
         "rating": "0.00"
     },
     {
-        "name": "Bloomberg",
-        "lean": "Center-Left",
-        "credibility": "High",
-        "feeds": [
-            "https://feeds.bloomberg.com/markets/news.rss",
-            "https://feeds.bloomberg.com/politics/news.rss",
-            "https://feeds.bloomberg.com/technology/news.rss"
-        ],
-        "note": "Paywalled - RSS summary only likely; classify on title+summary",
-        "rating": "-2.40"
-    },
-    {
         "name": "CNBC",
         "lean": "Center-Left",
         "credibility": "High",
@@ -196,38 +103,6 @@
             "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910"
         ],
         "rating": "-1.22"
-    },
-    {
-        "name": "Financial Times",
-        "lean": "Center",
-        "credibility": "High",
-        "feeds": [
-            "https://www.ft.com/rss/home"
-        ],
-        "note": "Paywalled - RSS summary only likely",
-        "rating": "0.00"
-    },
-    {
-        "name": "Ars Technica",
-        "lean": "Center",
-        "credibility": "High",
-        "feeds": [
-            "http://feeds.arstechnica.com/arstechnica/index/",
-            "https://feeds.arstechnica.com/arstechnica/features",
-            "https://feeds.arstechnica.com/arstechnica/technology-lab"
-        ],
-        "note": "Free RSS provides excerpts only; full text requires subscription",
-        "rating": "0.00"
-    },
-    {
-        "name": "The Verge",
-        "lean": "Center-Left",
-        "credibility": "High",
-        "feeds": [
-            "https://www.theverge.com/rss/index.xml"
-        ],
-        "note": "Free RSS provides excerpts only after 2025 paywall launch",
-        "rating": "-2.00"
     },
     {
         "name": "Wired",
@@ -264,23 +139,5 @@
             "https://www.scientificamerican.com/platform/syndication/rss/"
         ],
         "rating": "-2.00"
-    },
-    {
-        "name": "STAT",
-        "lean": "Center",
-        "credibility": "High",
-        "feeds": [
-            "https://www.statnews.com/feed/"
-        ],
-        "rating": "0.00"
-    },
-    {
-        "name": "New Scientist",
-        "lean": "Center",
-        "credibility": "High",
-        "feeds": [
-            "https://www.newscientist.com/feed/home/"
-        ],
-        "rating": "0.00"
     }
 ]
