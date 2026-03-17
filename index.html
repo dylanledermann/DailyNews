@@ -10,6 +10,28 @@
 <body>
     <div id="header">
         <span id="title">News</span>
+        <nav id="hamburger-nav">
+            <div class="hamburger-menu">
+                <div class="hamburger-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-links">
+                    <a href="?category=world" class="sidebar-item active" data-category="world">World</a>
+                    <a href="?category=politics" class="sidebar-item" data-category="politics">Politics</a>
+                    <a href="?category=business" class="sidebar-item" data-category="business">Business</a>
+                    <a href="?category=technology" class="sidebar-item" data-category="technology">Technology</a>
+                    <a href="?category=science" class="sidebar-item" data-category="science">Science</a>
+                    <a href="?category=health" class="sidebar-item" data-category="health">Health</a>
+                    <a href="?category=sports" class="sidebar-item" data-category="sports">Sports</a>
+                    <a href="?category=entertainment" class="sidebar-item" data-category="entertainment">Entertainment</a>
+                    <a href="?category=environment" class="sidebar-item" data-category="environment">Environment</a>
+                    <a href="?category=crime" class="sidebar-item" data-category="crime">Crime</a>
+                    <a href="?category=other" class="sidebar-item" data-category="other">Other</a>
+                </div>
+            </div>
+        </nav>
     </div>
     <div id="body-container">
         <nav id="menu-sidebar">
@@ -83184,7 +83206,12 @@ AP News
                     article.hidden=true;
             }
         });
-            
+         function toggleMenu() {
+            const menu = document.querySelector(".menu-links");
+            const icon = document.querySelector(".hamburger-icon");
+            menu.classList.toggle("open");
+            icon.classList.toggle("open");
+        }   
     </script>
 </body>
 </html>

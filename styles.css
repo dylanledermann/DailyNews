@@ -36,7 +36,7 @@
   --radius-lg: 12px;
  
   --sidebar-width: 200px;
-  --header-height: 57px;
+  --header-height: 64px;
 }
  
 /* ── DARK MODE ───────────────────────────────── */
@@ -74,6 +74,8 @@ a {
  
 /* ── HEADER ──────────────────────────────────── */
 #header {
+  display: flex;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -351,4 +353,110 @@ a {
   .main {
     padding: 1rem;
   }
+
+  #menu-sidebar{
+      display: none;
+  }
+  #hamburger-nav {
+      display: flex !important;
+  }
+}
+
+/* ── HAMBURGER MENU ──────────────────────────── */
+
+#hamburger-nav {
+    display: none;
+}
+
+.hamburger-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3 ease-in-out;
+}
+
+.menu-links a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3 ease-in-out;
+}
+
+.menu-links li {
+    list-style: none;
+}
+
+.menu-links.open {
+  background-color: var(--color-surface);
+
+    position: fixed;
+    top: var(--header-height) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 99;
+    
+    overflow-y: none;
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    visibility: hidden;
+  }
+  to {
+    max-height: 100%;
+    visibility: visible;
+  }
+}
+
+/* ── HAMBURGER ANIMATION ─────────────────────── */
+.hamburger-icon.open span:first-child {
+    transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+    transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+    transform: none;
+}
+
+.hamburger-icon span:nth-child(2) {
+    opacity: 1;
+}
+
+.hamburger-icon span:last-child {
+    transform: none;
 }
