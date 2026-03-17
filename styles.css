@@ -421,7 +421,8 @@ a {
     bottom: 0 !important;
     z-index: 99;
     
-    overflow-y: none;
+    overflow-y: scroll;
+    scrollbar-width: none;
     animation: slideDown 0.5s ease-out forwards;
 }
 
