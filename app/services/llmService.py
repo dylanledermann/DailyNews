@@ -111,6 +111,7 @@ class LLMService:
             base_url=SETTINGS["LLM_BASE_URL"],
             api_key=SETTINGS["LLM_API_KEY"]
         )
+        self.model = SETTINGS["LLM_MODEL"]
 
     def classify_article(self, article: dict) -> dict | None:
         body = article.get("body") or article.get("summary", "")
@@ -132,7 +133,7 @@ class LLMService:
 
         try:
             response = self.client.chat.completions.create(
-                model="llama3.1:8b",
+                model=self.model,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=500,
                 temperature=0.1,
