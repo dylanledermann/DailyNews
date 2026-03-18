@@ -10,6 +10,10 @@ class HTMLGenerationService:
         self.repo = ArticleRepo()
 
     def generateHtml(self) -> None:
+        """
+        Generates HTML for the scraped articles in the database.
+        Saves HTML string to predetermined location (see settings.py).
+        """
         articles = self.repo.get_recent_articles()
         formattedArticles = []
         for article in articles:

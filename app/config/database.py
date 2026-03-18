@@ -31,12 +31,24 @@ CREATE INDEX IF NOT EXISTS idx_category ON articles(category);
 """
 
 def get_connection() -> sqlite3.Connection:
+    """
+    Gets connection to the database.
+
+    Returns:
+        sqlite3.Connection: Connection to database.
+    """
     conn = sqlite3.connect(SETTINGS["DB_PATH"])
     conn.row_factory = sqlite3.Row # rows behave like dicts
     conn.execute("PRAGMA journnal_mode=WAL") # safer concurrect reads
     return conn
 
 def init_db() -> sqlite3.Connection:
+    """
+    Gets connection to database and initiates starting script to create tables, rows, etc.
+
+    Returns:
+        sqlite3.Connection: Connection to database.
+    """
     conn = get_connection()
     conn.executescript(SCHEMA)
     conn.commit()

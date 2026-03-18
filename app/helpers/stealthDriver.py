@@ -24,6 +24,12 @@ def load_cookies(driver):
         pass
 
 def gen_driver():
+    """
+    Generates selenium Chrome Driver with anti-bot detection characteristics.
+
+    Returns:
+        WebDriver: WebDriver object using Chrome as the browser.
+    """
     chrome_options = Options()
     chrome_options.add_argument("user-agent=" + USER_AGENT)
     chrome_options.add_argument("--user-data-dir=" + DATA_DIRECTORY)

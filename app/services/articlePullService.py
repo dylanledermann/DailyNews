@@ -19,7 +19,7 @@ class ArticlePullService:
 
     def extract_via_trafilatura(self, html: str) -> str | None:
         """
-        Strategy 1: Trafilatura — purpose-built article extractor.
+        Strategy 1: Trafilatura - purpose-built article extractor.
         Best general-purpose option, handles most news sites well.
         """
         text = trafilatura.extract(
@@ -77,7 +77,7 @@ class ArticlePullService:
     def extract_via_density(self, soup: BeautifulSoup) -> str | None:
         """
         Strategy 4: Paragraph density fallback.
-        Find the div with the most <p> tags — usually the article body.
+        Find the div with the most <p> tags - usually the article body.
         Last resort, least precise.
         """
         all_divs = soup.find_all("div")

@@ -10,6 +10,9 @@ load_dotenv(".env")
 SETTINGS = None
 
 def load_settings():
+    """
+    Loads .env values into program in global variable "SETTINGS".
+    """
     global SETTINGS
     SETTINGS = {
         "LLM_BASE_URL": os.getenv("LLM_BASE_URL") or "http://localhost:11434/v1",

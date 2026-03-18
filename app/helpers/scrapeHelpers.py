@@ -34,7 +34,8 @@ PAYWALLED_LENGTH = 150
 def check_truncation(url: str, body: str | None) -> int:
     """
     Detects whether article body is paywalled or truncated.
-    Returns 1 if truncated, 0 if fully body available.
+    Returns:
+        int:  1 if truncated, 0 if fully body available.
     """
     if not body:
             return 1
@@ -44,16 +45,40 @@ def check_truncation(url: str, body: str | None) -> int:
     return 0
 
 def get_domain(url: str) -> str:
+    """
+    Returns the domain of the given url.
+
+    Args:
+        url (str): Url to get the domain from.
+    
+    Returns:
+        str: domain of the given url.
+    """
     return urlparse(url).netloc.replace("www.", "")
 
 def is_blocklisted(url: str) -> bool:
+    """
+    Checks if the url would block from scraping (paywall or anti-bot)
+
+    Args:
+        url (str): Url to check if it is blocklisted.
+    
+    Returns:
+        bool: True if the url is blocklisted else False.
+    """
     domain = get_domain(url)
     return any(blocked in domain for blocked in SCRAPE_BLOCKLIST)
 
-def extract_metadata(soup: BeautifulSoup):
+def extract_metadata(soup: BeautifulSoup) -> dict:
     """
     Pull structured metadata from <meta> tags.
     These are consistent across almost all news sites.
+
+    Args:
+        soup (BeautifulSoup): soup to pull metadata from.
+    
+    Returns:
+        dict: Dictionary containing the article metadata from the provided url.
     """
     def get_meta(prop: str = None, name: str = None) -> str | None:
         tag = None
@@ -75,4 +100,13 @@ def extract_metadata(soup: BeautifulSoup):
     }
 
 def clean_text(text: str):
+    """
+    Cleans the html text to be plain text.
+
+    Args:
+        text (str): Text to be cleaned.
+
+    Returns:
+        str: Cleaned text.
+    """
     return BeautifulSoup(text, "html.parser").get_text(separator="\n", strip=True)

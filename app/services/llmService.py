@@ -114,6 +114,7 @@ class LLMService:
         self.model = SETTINGS["LLM_MODEL"]
 
     def classify_article(self, article: dict) -> dict | None:
+        """Classifies given article using the predetermined LLM (see settings.py)."""
         body = article.get("body") or article.get("summary", "")
         if not body:
             return None
