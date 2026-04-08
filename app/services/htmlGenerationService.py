@@ -1,5 +1,3 @@
-import os
-
 from app.config.settings import SETTINGS
 from app.repo.articleRepo import ArticleRepo
 
@@ -29,10 +27,10 @@ class HTMLGenerationService:
                 summary=article.get("summary_ai", "") if \
                     (not article.get("summary") or article.get("body_truncated", 0)) \
                     else article.get("summary"),
-                bias_width=f"{(article.get("bias_score") or 0)*100:.2f}%",
-                bias_value=f"{(article.get("bias_score") or 0):.2f}",
-                factuality_width=f"{(article.get("factuality_score") or 0)*100:.2f}%",
-                factuality_value=f"{(article.get("factuality_score") or 0):.2f}",
+                bias_width=f"{(article.get('bias_score') or 0)*100:.2f}%",
+                bias_value=f"{(article.get('bias_score') or 0):.2f}",
+                factuality_width=f"{(article.get('factuality_score') or 0)*100:.2f}%",
+                factuality_value=f"{(article.get('factuality_score') or 0):.2f}",
                 tone_value=article.get("tone", "Neutral"),
                 emotional_value="Yes" if article.get("emotional_language", 0) else "No",
                 bias_reasoning=article.get("bias_reasoning", "")
@@ -182,17 +180,17 @@ HTML_TEMPLATE = """
                     article.hidden=true;
             }}
         }});
-        function toggleMenu() {
+        function toggleMenu() {{
             const menu = document.querySelector(".menu-links");
             const icon = document.querySelector(".hamburger-icon");
             menu.classList.toggle("open");
             icon.classList.toggle("open");
-            if (menu.classList.contains("open")) {
+            if (menu.classList.contains("open")) {{
                 document.body.style.overflow = "hidden";
-            } else {
+            }} else {{
                 document.body.style.overflow = "";
-            }
-        } 
+            }}
+        }}
     </script>
 </body>
 </html>

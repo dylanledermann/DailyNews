@@ -6,27 +6,27 @@ SOURCES = [
     # -------------------------
     # U.S. GENERAL NEWS
     # -------------------------
-    # {
-    #     # Associated Press dropped RSS - use Google News source filter instead
-    #     "name": "Associated Press",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feed_type": "google_news",
-    #     "feeds": [
-    #         "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
-    #     ]
-    # },
-    # {
-    #     # Reuters dropped native RSS in 2020 — use Google News source filter instead
-    #     "name": "Reuters",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feed_type": "google_news",
-    #     "feeds": [
-    #         "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
-    #     ],
-    #     "note": "Google News proxy — resolve redirect URLs before scraping"
-    # },
+    {
+        # Associated Press dropped RSS - use Google News source filter instead
+        "name": "Associated Press",
+        "lean": "Center",
+        "credibility": "High",
+        "feed_type": "google_news",
+        "feeds": [
+            "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
+        ]
+    },
+    {
+        # Reuters dropped native RSS in 2020 — use Google News source filter instead
+        "name": "Reuters",
+        "lean": "Center",
+        "credibility": "High",
+        "feed_type": "google_news",
+        "feeds": [
+            "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
+        ],
+        "note": "Google News proxy — resolve redirect URLs before scraping"
+    },
     {
         "name": "NPR",
         "lean": "Center-Left",
@@ -47,28 +47,28 @@ SOURCES = [
             "https://thehill.com/rss/syndicator/19110",  # Top Stories
         ]
     },
-    # {
-    #     "name": "Axios",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://api.axios.com/feed/",
-    #     ]
-    # },
-    # {
-    #     "name": "New York Times News",
-    #     "lean": "Center-Left",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
-    #         "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
-    #     ]
-    # },
+    {
+        "name": "Axios",
+        "lean": "Center",
+        "credibility": "High",
+        "feeds": [
+            "https://api.axios.com/feed/",
+        ]
+    },
+    {
+        "name": "New York Times News",
+        "lean": "Center-Left",
+        "credibility": "High",
+        "feeds": [
+            "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+        ]
+    },
     {
         "name": "Washington Post",
         "lean": "Center-Left",
@@ -82,31 +82,31 @@ SOURCES = [
             "https://feeds.washingtonpost.com/rss/lifestyle",
         ]
     },
-    # {
-    #     "name": "Wall Street Journal",
-    #     "lean": "Center-Right",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
-    #         "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml",
-    #         "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-    #         "https://feeds.a.dj.com/rss/RSSWSJD.xml",          # Tech
-    #         "https://feeds.a.dj.com/rss/RSSOpinion.xml",
-    #     ]
-    # },
-    # {
-    #     "name": "Fox News",
-    #     "lean": "Right",
-    #     "credibility": "Mixed",
-    #     "feeds": [
-    #         "https://moxie.foxnews.com/google-publisher/latest.xml",
-    #         "https://moxie.foxnews.com/google-publisher/politics.xml",
-    #         "https://moxie.foxnews.com/google-publisher/us.xml",
-    #         "https://moxie.foxnews.com/google-publisher/world.xml",
-    #         "https://moxie.foxnews.com/google-publisher/health.xml",
-    #         "https://moxie.foxnews.com/google-publisher/tech.xml",
-    #     ]
-    # },
+    {
+        "name": "Wall Street Journal",
+        "lean": "Center-Right",
+        "credibility": "High",
+        "feeds": [
+            "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+            "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml",
+            "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
+            "https://feeds.a.dj.com/rss/RSSWSJD.xml",          # Tech
+            "https://feeds.a.dj.com/rss/RSSOpinion.xml",
+        ]
+    },
+    {
+        "name": "Fox News",
+        "lean": "Right",
+        "credibility": "Mixed",
+        "feeds": [
+            "https://moxie.foxnews.com/google-publisher/latest.xml",
+            "https://moxie.foxnews.com/google-publisher/politics.xml",
+            "https://moxie.foxnews.com/google-publisher/us.xml",
+            "https://moxie.foxnews.com/google-publisher/world.xml",
+            "https://moxie.foxnews.com/google-publisher/health.xml",
+            "https://moxie.foxnews.com/google-publisher/tech.xml",
+        ]
+    },
     {
         "name": "The Guardian",
         "lean": "Left",
@@ -147,15 +147,15 @@ SOURCES = [
             "https://feeds.bbci.co.uk/news/business/rss.xml",
         ]
     },
-    # {
-    #     "name": "Al Jazeera",
-    #     "lean": "Center-Left",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://www.aljazeera.com/xml/rss/all.xml",
-    #     ]
-    #     "notes": "Mostly video-based news."
-    # },
+    {
+        "name": "Al Jazeera",
+        "lean": "Center-Left",
+        "credibility": "High",
+        "feeds": [
+            "https://www.aljazeera.com/xml/rss/all.xml",
+        ],
+        "note": "Mostly video-based news."
+    },
     {
         "name": "Deutsche Welle",
         "lean": "Center",
@@ -176,17 +176,17 @@ SOURCES = [
     # -------------------------
     # BUSINESS & FINANCE
     # -------------------------
-    # {
-    #     "name": "Bloomberg",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://feeds.bloomberg.com/markets/news.rss",
-    #         "https://feeds.bloomberg.com/politics/news.rss",
-    #         "https://feeds.bloomberg.com/technology/news.rss",
-    #     ],
-    #     "note": "Paywalled — RSS summary only likely; classify on title+summary"
-    # },
+    {
+        "name": "Bloomberg",
+        "lean": "Center",
+        "credibility": "High",
+        "feeds": [
+            "https://feeds.bloomberg.com/markets/news.rss",
+            "https://feeds.bloomberg.com/politics/news.rss",
+            "https://feeds.bloomberg.com/technology/news.rss",
+        ],
+        "note": "Paywalled — RSS summary only likely; classify on title+summary"
+    },
     {
         "name": "CNBC",
         "lean": "Center",
@@ -198,39 +198,39 @@ SOURCES = [
             "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910",   # Technology
         ]
     },
-    # {
-    #     "name": "Financial Times",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://www.ft.com/rss/home",
-    #     ],
-    #     "note": "Paywalled — RSS summary only likely"
-    # },
+    {
+        "name": "Financial Times",
+        "lean": "Center",
+        "credibility": "High",
+        "feeds": [
+            "https://www.ft.com/rss/home",
+        ],
+        "note": "Paywalled — RSS summary only likely"
+    },
 
     # -------------------------
     # TECHNOLOGY
     # -------------------------
-    # {
-    #     "name": "Ars Technica",
-    #     "lean": "Center-Left",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "http://feeds.arstechnica.com/arstechnica/index/",
-    #         "https://feeds.arstechnica.com/arstechnica/features",
-    #         "https://feeds.arstechnica.com/arstechnica/technology-lab",
-    #     ],
-    #     "note": "Free RSS provides excerpts only; full text requires subscription"
-    # },
-    # {
-    #     "name": "The Verge",
-    #     "lean": "Center-Left",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://www.theverge.com/rss/index.xml",
-    #     ],
-    #     "note": "Free RSS provides excerpts only after 2025 paywall launch"
-    # },
+    {
+        "name": "Ars Technica",
+        "lean": "Center-Left",
+        "credibility": "High",
+        "feeds": [
+            "http://feeds.arstechnica.com/arstechnica/index/",
+            "https://feeds.arstechnica.com/arstechnica/features",
+            "https://feeds.arstechnica.com/arstechnica/technology-lab",
+        ],
+        "note": "Free RSS provides excerpts only; full text requires subscription"
+    },
+    {
+        "name": "The Verge",
+        "lean": "Center-Left",
+        "credibility": "High",
+        "feeds": [
+            "https://www.theverge.com/rss/index.xml",
+        ],
+        "note": "Free RSS provides excerpts only after 2025 paywall launch"
+    },
     {
         "name": "Wired",
         "lean": "Center-Left",
@@ -267,20 +267,20 @@ SOURCES = [
             "https://www.scientificamerican.com/platform/syndication/rss/",
         ]
     },
-    # {
-    #     "name": "STAT News",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://www.statnews.com/feed/",
-    #     ]
-    # },
-    # {
-    #     "name": "New Scientist",
-    #     "lean": "Center",
-    #     "credibility": "High",
-    #     "feeds": [
-    #         "https://www.newscientist.com/feed/home/",
-    #     ]
-    # },
+    {
+        "name": "STAT News",
+        "lean": "Center",
+        "credibility": "High",
+        "feeds": [
+            "https://www.statnews.com/feed/",
+        ]
+    },
+    {
+        "name": "New Scientist",
+        "lean": "Center",
+        "credibility": "High",
+        "feeds": [
+            "https://www.newscientist.com/feed/home/",
+        ]
+    },
 ]

@@ -5,6 +5,7 @@ import requests
 import time
 from datetime import datetime
 from googlenewsdecoder import gnewsdecoder
+from tqdm import tqdm
 
 from app.helpers.scrapeHelpers import check_truncation, clean_text
 
@@ -39,7 +40,7 @@ class FeedPullService:
             result = gnewsdecoder(google_url, interval=2)
             if result.get("status"):
                 return result["decoded_url"]
-            print(f"Decoder returned error: {result.get("message")}")
+            print(f"Decoder returned error: {result.get('message')}")
             return None
         except requests.RequestException as e:
             print(f"URL resolution failed: {google_url - {e}}")
@@ -49,7 +50,7 @@ class FeedPullService:
         """Stable unique ID derived from canonical article URL."""
         return hashlib.md5(url.encode()).hexdigest()
     
-    def parse_entry(self, entry: feedparser.FeedParseDict, source: dict, resolved_url: str) -> dict:
+    def parse_entry(self, entry: feedparser.FeedParserDict, source: dict, resolved_url: str) -> dict:
         """
         Normalize a feedparser entry into a flat article dict.
         Body and classification fields are null - filled by scraper/classifier later.
@@ -134,7 +135,7 @@ class FeedPullService:
             
             articles.append(article)
 
-        print(f"{len(articles)} articles from {source["name"]}")
+        print(f"{len(articles)} articles from {source['name']}")
         return articles
     
     def fetch_all_sources(self, sources: list[dict]) -> list[dict]:
@@ -146,8 +147,9 @@ class FeedPullService:
         all_articles = []
         seen_ids = set()
 
-        for source in sources:
-            print(f"\n[{source["name"]}]")
+        for i in tqdm(range(len(sources))):
+            source = sources[i]
+            print(f"\n[{source['name']}]")
             feed_type = source.get("feed_type", "rss")
             is_google_news = feed_type == "google_news"
 
@@ -174,7 +176,7 @@ class FeedPullService:
     
 def test_source(source: dict):
     """Quick diagnostic to verify a source's feeds are working."""
-    print(f"\n=== Testing: {source["name"]} ===")
+    print(f"\n=== Testing: {source['name']} ===")
     service = FeedPullService()
     articles = service.fetch_all_sources([source])
     for a in articles[:3]:

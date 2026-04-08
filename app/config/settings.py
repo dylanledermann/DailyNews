@@ -1,3 +1,4 @@
+from functools import lru_cache
 from dotenv import load_dotenv
 import os
 
@@ -9,6 +10,7 @@ load_dotenv(".env")
 # NEWS_CLEANUP=2 # Days after last update to remove news article
 SETTINGS = None
 
+@lru_cache
 def load_settings():
     """
     Loads .env values into program in global variable "SETTINGS".
